@@ -38,4 +38,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     // RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
+    // Material Design
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+    // CardView
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
