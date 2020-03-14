@@ -42,4 +42,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha05'
     // CardView
     implementation 'androidx.cardview:cardview:1.0.0'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
 }
