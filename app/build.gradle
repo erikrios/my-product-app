@@ -44,4 +44,8 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    // Converter GSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    // Logging Interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
 }
