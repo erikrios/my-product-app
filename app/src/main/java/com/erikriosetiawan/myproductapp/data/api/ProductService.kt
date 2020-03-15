@@ -1,6 +1,7 @@
 package com.erikriosetiawan.myproductapp.data.api
 
 import com.erikriosetiawan.myproductapp.data.model.Product
+import com.erikriosetiawan.myproductapp.data.model.ProductResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -8,7 +9,7 @@ interface ProductService {
 
     // Get all products
     @GET("api/products")
-    fun getProducts(): Call<List<Product>>
+    fun getProducts(): Call<ProductResponse>
 
     // Get product by id
     @GET("api/products/{id}")
