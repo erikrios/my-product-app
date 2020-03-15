@@ -10,10 +10,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardElevation="5dp"
+            app:cardElevation="2dp"
+            app:cardMaxElevation="5dp"
             app:cardUseCompatPadding="true"
-            app:cardMaxElevation="10dp"
-            app:contentPadding="5dp"
+            app:contentPadding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
