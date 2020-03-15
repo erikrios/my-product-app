@@ -11,8 +11,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:cardElevation="5dp"
-            app:cardMaxElevation="10dp"
             app:cardUseCompatPadding="true"
+            app:cardMaxElevation="10dp"
+            app:contentPadding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
