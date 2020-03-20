@@ -34,7 +34,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         getProduct()
     }
 
-    fun getProduct() {
+    private fun getProduct() {
         showProgress(true)
         val productId = getIntent()
         val productService = ServiceBuilder.buildService(ProductService::class.java)
