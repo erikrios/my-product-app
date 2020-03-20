@@ -25,6 +25,7 @@ class ProductAdapter(private val context: Context, private val products: List<Pr
         holder.bind(products[position]) {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(PRODUCT_ID_KEY, products[position].productId)
+            context.startActivity(intent)
         }
 
     inner class ViewHolder(private val binding: ListItemBinding) :
