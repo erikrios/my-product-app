@@ -13,11 +13,11 @@ interface ProductService {
 
     // Get product by id
     @GET("api/products/{id}")
-    fun getProduct(@Path("id") id: Int): Call<Product>
+    fun getProduct(@Path("id") id: Int): Call<ProductResponse>
 
     // Add new product
     @POST("api/products")
-    fun addProduct(@Body newProduct: Product): Call<Product>
+    fun addProduct(@Body newProduct: Product): Call<ProductResponse>
 
     // Update the existing product
     @FormUrlEncoded
@@ -26,7 +26,7 @@ interface ProductService {
         @Path("id") id: Int,
         @Field("product_name") productName: String,
         @Field("product_price") productPrice: String
-    ): Call<Product>
+    ): Call<ProductResponse>
 
     // Delete product
     @DELETE("api/products/{id}")
