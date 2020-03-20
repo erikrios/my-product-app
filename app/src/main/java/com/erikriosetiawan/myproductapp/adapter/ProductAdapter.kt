@@ -1,12 +1,15 @@
 package com.erikriosetiawan.myproductapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.databinding.ListItemBinding
+import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity
+import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity.Companion.PRODUCT_ID_KEY
 
 class ProductAdapter(private val context: Context, private val products: List<Product>) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -21,7 +24,8 @@ class ProductAdapter(private val context: Context, private val products: List<Pr
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(products[position]) {
-            Toast.makeText(context, it.productName, Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra(PRODUCT_ID_KEY, products[position].productId)
         }
 
     inner class ViewHolder(private val binding: ListItemBinding) :
