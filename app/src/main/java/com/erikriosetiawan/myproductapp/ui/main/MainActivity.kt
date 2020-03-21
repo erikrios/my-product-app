@@ -56,4 +56,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.swipeMain.setOnRefreshListener { viewModel.getDataProducts() }
     }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
 }
