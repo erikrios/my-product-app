@@ -18,7 +18,7 @@ interface ProductService {
 
     // Add new product
     @POST("api/products")
-    fun addProduct(@Body newProduct: Product): Call<ProductResponse>
+    fun addProduct(@Body newProduct: Product): Call<ProductResultResponse>
 
     // Update the existing product
     @Headers("Content-Type: application/json")
