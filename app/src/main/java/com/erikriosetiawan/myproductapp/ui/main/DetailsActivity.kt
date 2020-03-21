@@ -1,12 +1,13 @@
 package com.erikriosetiawan.myproductapp.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.erikriosetiawan.myproductapp.R
+import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.databinding.ActivityDetailsBinding
 import com.erikriosetiawan.myproductapp.ui.viewmodel.DetailsViewModel
 import com.erikriosetiawan.myproductapp.ui.viewmodel.DetailsViewModelFactory
@@ -51,6 +52,15 @@ class DetailsActivity : AppCompatActivity() {
                     editTextProductPrice.setText(it.productPrice)
                 }
             })
+        }
+
+        // Update the data
+        binding.buttonUpdateData.setOnClickListener {
+            val productId = binding.textViewProductId.text.toString().toInt()
+            val productName = binding.editTextProductName.text.toString()
+            val productPrice = binding.editTextProductPrice.text.toString()
+            val newProduct = Product(productId, productName, productPrice)
+            viewModel.updateProduct(newProduct)
         }
     }
 }
