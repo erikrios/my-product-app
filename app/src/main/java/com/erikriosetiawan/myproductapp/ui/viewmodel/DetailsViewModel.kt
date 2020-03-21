@@ -2,6 +2,7 @@ package com.erikriosetiawan.myproductapp.ui.viewmodel
 
 import android.app.Activity
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,6 +31,8 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         _isShow.value = show
     }
 
+    private val productService = ServiceBuilder.buildService(ProductService::class.java)
+
     init {
         getProduct()
     }
@@ -37,7 +40,6 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
     private fun getProduct() {
         showProgress(true)
         val productId = getIntent()
-        val productService = ServiceBuilder.buildService(ProductService::class.java)
         val requestCall = productService.getProduct(productId)
 
         requestCall.enqueue(object : Callback<ProductResponse> {
@@ -56,6 +58,44 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                 t.message?.let { Log.e(LOG, it) }
             }
         })
+    }
+
+    private fun updateProduct(newProduct: Product) {
+        var productId = 0
+        var productName = ""
+        var productPrice = ""
+
+        newProduct.apply {
+            this.productId?.let { productId = it }
+            this.productName?.let { productName = it }
+            this.productPrice?.let { productPrice = it }
+        }
+
+        val requestCall = productService.updateProduct(productId, productName, productPrice)
+
+        requestCall.enqueue(object : Callback<ProductResponse> {
+
+            override fun onResponse(
+                call: Call<ProductResponse>,
+                response: Response<ProductResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Toast.makeText(
+                        activity.baseContext,
+                        "Product update successful",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.i(LOG, "Updating the data is successfully")
+                    activity.finish()
+                }
+            }
+
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                t.message?.let { Log.e(LOG, it) }
+                Toast.makeText(activity.baseContext, "Product uupdate failed", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        });
     }
 
     private fun getIntent(): Int =
