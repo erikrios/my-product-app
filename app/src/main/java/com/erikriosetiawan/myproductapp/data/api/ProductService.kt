@@ -2,6 +2,7 @@ package com.erikriosetiawan.myproductapp.data.api
 
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.data.model.ProductResponse
+import com.erikriosetiawan.myproductapp.data.model.ProductUpdateResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -20,13 +21,12 @@ interface ProductService {
     fun addProduct(@Body newProduct: Product): Call<ProductResponse>
 
     // Update the existing product
-    @FormUrlEncoded
+    @Headers("Content-Type: application/json")
     @PUT("api/products/{id}")
     fun updateProduct(
         @Path("id") id: Int,
-        @Field("product_name") productName: String,
-        @Field("product_price") productPrice: String
-    ): Call<ProductResponse>
+        @Body product: Product
+    ): Call<ProductUpdateResponse>
 
     // Delete product
     @DELETE("api/products/{id}")
