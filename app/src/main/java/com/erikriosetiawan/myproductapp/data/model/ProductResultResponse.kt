@@ -2,7 +2,7 @@ package com.erikriosetiawan.myproductapp.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ProductUpdateResponse(
+data class ProductResultResponse(
     @SerializedName("status")
     val status: Int,
     @SerializedName("error")

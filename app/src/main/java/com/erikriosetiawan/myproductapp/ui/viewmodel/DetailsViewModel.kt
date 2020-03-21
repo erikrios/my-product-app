@@ -10,7 +10,7 @@ import com.erikriosetiawan.myproductapp.data.api.ProductService
 import com.erikriosetiawan.myproductapp.data.api.ServiceBuilder
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.data.model.ProductResponse
-import com.erikriosetiawan.myproductapp.data.model.ProductUpdateResponse
+import com.erikriosetiawan.myproductapp.data.model.ProductResultResponse
 import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity.Companion.PRODUCT_ID_KEY
 import retrofit2.Call
 import retrofit2.Callback
@@ -79,11 +79,11 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
 
             val requestCall = productService.updateProduct(productId, newProduct)
 
-            requestCall.enqueue(object : Callback<ProductUpdateResponse> {
+            requestCall.enqueue(object : Callback<ProductResultResponse> {
 
                 override fun onResponse(
-                    call: Call<ProductUpdateResponse>,
-                    response: Response<ProductUpdateResponse>
+                    call: Call<ProductResultResponse>,
+                    response: Response<ProductResultResponse>
                 ) {
                     if (response.isSuccessful) {
                         Toast.makeText(
@@ -96,7 +96,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ProductUpdateResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ProductResultResponse>, t: Throwable) {
                     t.message?.let { Log.e(LOG, it) }
                     Toast.makeText(
                             activity.baseContext,

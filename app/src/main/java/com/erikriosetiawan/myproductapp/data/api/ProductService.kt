@@ -2,7 +2,7 @@ package com.erikriosetiawan.myproductapp.data.api
 
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.data.model.ProductResponse
-import com.erikriosetiawan.myproductapp.data.model.ProductUpdateResponse
+import com.erikriosetiawan.myproductapp.data.model.ProductResultResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -26,7 +26,7 @@ interface ProductService {
     fun updateProduct(
         @Path("id") id: Int,
         @Body product: Product
-    ): Call<ProductUpdateResponse>
+    ): Call<ProductResultResponse>
 
     // Delete product
     @DELETE("api/products/{id}")
