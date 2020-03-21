@@ -60,7 +60,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         })
     }
 
-    private fun updateProduct(newProduct: Product) {
+    fun updateProduct(newProduct: Product) {
         var productId = 0
         var productName = ""
         var productPrice = ""
@@ -71,31 +71,42 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
             this.productPrice?.let { productPrice = it }
         }
 
-        val requestCall = productService.updateProduct(productId, productName, productPrice)
+        // Checking the data is changed
+        if ((productName != _product.value?.productName) || (productPrice != _product.value?.productPrice)) {
 
-        requestCall.enqueue(object : Callback<ProductResponse> {
+            val requestCall = productService.updateProduct(productId, productName, productPrice)
 
-            override fun onResponse(
-                call: Call<ProductResponse>,
-                response: Response<ProductResponse>
-            ) {
-                if (response.isSuccessful) {
-                    Toast.makeText(
-                        activity.baseContext,
-                        "Product update successful",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.i(LOG, "Updating the data is successfully")
-                    activity.finish()
+            requestCall.enqueue(object : Callback<ProductResponse> {
+
+                override fun onResponse(
+                    call: Call<ProductResponse>,
+                    response: Response<ProductResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(
+                            activity.baseContext,
+                            "Product update successful",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.i(LOG, "Updating the data is successfully")
+                        activity.finish()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
-                t.message?.let { Log.e(LOG, it) }
-                Toast.makeText(activity.baseContext, "Product uupdate failed", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        });
+                override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                    t.message?.let { Log.e(LOG, it) }
+                    Toast.makeText(
+                            activity.baseContext,
+                            "Product update failed",
+                            Toast.LENGTH_SHORT
+                        )
+                        .show()
+                }
+            });
+        } else {
+            Toast.makeText(activity.baseContext, "Please change some field", Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     private fun getIntent(): Int =
