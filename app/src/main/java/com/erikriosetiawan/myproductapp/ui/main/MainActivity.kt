@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Update the adapter data when onResume() function is called
-        adapter.notifyDataSetChanged()
+        // Update the data when onResume() function is called
+        viewModel.getDataProducts()
     }
 }
