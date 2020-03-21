@@ -102,7 +102,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                         )
                         .show()
                 }
-            });
+            })
         } else {
             Toast.makeText(activity.baseContext, "Please change some field", Toast.LENGTH_SHORT)
                 .show()
@@ -110,6 +110,6 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
     }
 
     private fun getIntent(): Int =
-        activity.intent.getIntExtra(PRODUCT_ID_KEY, -1);
+        activity.intent.getIntExtra(PRODUCT_ID_KEY, -1)
 
 }
