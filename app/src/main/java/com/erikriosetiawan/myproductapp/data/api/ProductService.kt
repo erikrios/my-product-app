@@ -30,5 +30,5 @@ interface ProductService {
 
     // Delete product
     @DELETE("api/products/{id}")
-    fun deleteProduct(@Path("id") id: Int): Call<Unit>
+    fun deleteProduct(@Path("id") id: Int): Call<ProductResultResponse>
 }
