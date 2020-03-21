@@ -10,6 +10,7 @@ import com.erikriosetiawan.myproductapp.data.api.ProductService
 import com.erikriosetiawan.myproductapp.data.api.ServiceBuilder
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.data.model.ProductResponse
+import com.erikriosetiawan.myproductapp.data.model.ProductUpdateResponse
 import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity.Companion.PRODUCT_ID_KEY
 import retrofit2.Call
 import retrofit2.Callback
@@ -71,16 +72,18 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
             this.productPrice?.let { productPrice = it }
         }
 
+        Log.d(LOG, productName)
+
         // Checking the data is changed
         if ((productName != _product.value?.productName) || (productPrice != _product.value?.productPrice)) {
 
-            val requestCall = productService.updateProduct(productId, productName, productPrice)
+            val requestCall = productService.updateProduct(productId, newProduct)
 
-            requestCall.enqueue(object : Callback<ProductResponse> {
+            requestCall.enqueue(object : Callback<ProductUpdateResponse> {
 
                 override fun onResponse(
-                    call: Call<ProductResponse>,
-                    response: Response<ProductResponse>
+                    call: Call<ProductUpdateResponse>,
+                    response: Response<ProductUpdateResponse>
                 ) {
                     if (response.isSuccessful) {
                         Toast.makeText(
@@ -93,7 +96,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ProductUpdateResponse>, t: Throwable) {
                     t.message?.let { Log.e(LOG, it) }
                     Toast.makeText(
                             activity.baseContext,
