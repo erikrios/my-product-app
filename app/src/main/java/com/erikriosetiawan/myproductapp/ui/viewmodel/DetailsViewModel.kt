@@ -112,7 +112,8 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         }
     }
 
-    private fun getIntent(): Int =
-        activity.intent.getIntExtra(PRODUCT_ID_KEY, -1)
-
+    private fun getIntent(): Int {
+        return activity.intent.getIntExtra(PRODUCT_ID_KEY, -1)
+    }
 }
+

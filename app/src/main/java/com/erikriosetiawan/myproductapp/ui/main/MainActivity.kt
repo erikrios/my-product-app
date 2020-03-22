@@ -55,6 +55,10 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewProduct.adapter = adapter
 
         binding.swipeMain.setOnRefreshListener { viewModel.getDataProducts() }
+
+        binding.floatingActionButton.setOnClickListener {
+
+        }
     }
 
     override fun onResume() {

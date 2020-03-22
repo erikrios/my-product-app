@@ -19,6 +19,7 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         const val PRODUCT_ID_KEY = "product_id_key"
+        const val PRODUCT_ADD_ID_KEY = "product_add_id_key"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
