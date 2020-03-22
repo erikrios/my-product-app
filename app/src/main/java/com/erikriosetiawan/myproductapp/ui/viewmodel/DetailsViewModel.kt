@@ -17,7 +17,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class DetailsViewModel(private val activity: Activity) : ViewModel() {
 
     private val LOG = DetailsViewModel::class.java.simpleName
@@ -163,7 +162,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         return activity.intent.getIntExtra(PRODUCT_ID_KEY, -1)
     }
 
-    private fun getIntentAddId(): String =
+    private fun getIntentAddId(): String? =
         activity.intent.getStringExtra(DetailsActivity.PRODUCT_ADD_ID_KEY)
 }
 
