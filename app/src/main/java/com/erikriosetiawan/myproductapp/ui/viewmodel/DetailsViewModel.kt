@@ -11,6 +11,7 @@ import com.erikriosetiawan.myproductapp.data.api.ServiceBuilder
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.data.model.ProductResponse
 import com.erikriosetiawan.myproductapp.data.model.ProductResultResponse
+import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity
 import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity.Companion.PRODUCT_ID_KEY
 import retrofit2.Call
 import retrofit2.Callback
@@ -115,5 +116,8 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
     private fun getIntent(): Int {
         return activity.intent.getIntExtra(PRODUCT_ID_KEY, -1)
     }
+
+    private fun getIntentAddId(): String =
+        activity.intent.getStringExtra(DetailsActivity.PRODUCT_ADD_ID_KEY) as String
 }
 
