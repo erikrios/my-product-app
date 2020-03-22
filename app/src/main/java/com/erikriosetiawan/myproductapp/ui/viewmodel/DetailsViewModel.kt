@@ -36,7 +36,8 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
     private val productService = ServiceBuilder.buildService(ProductService::class.java)
 
     init {
-        getProduct()
+        if (getIntentAddId() != DetailsActivity.PRODUCT_ADD_ID_KEY)
+            getProduct()
     }
 
     private fun getProduct() {
