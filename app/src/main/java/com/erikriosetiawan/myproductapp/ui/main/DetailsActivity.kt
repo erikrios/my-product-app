@@ -55,13 +55,29 @@ class DetailsActivity : AppCompatActivity() {
             })
         }
 
-        // Update the data
-        binding.buttonUpdateData.setOnClickListener {
-            val productId = binding.textViewProductId.text.toString().toInt()
-            val productName = binding.editTextProductName.text.toString()
-            val productPrice = binding.editTextProductPrice.text.toString()
-            val newProduct = Product(productId, productName, productPrice)
-            viewModel.updateProduct(newProduct)
+        // Set button text
+        binding.buttonUpdateData.apply {
+            if (viewModel.intentId == PRODUCT_ADD_ID_KEY)
+                text = resources.getString(R.string.add_data)
+        }
+
+        // Add button click handling
+        binding.buttonUpdateData.apply {
+            if (viewModel.intentId == PRODUCT_ADD_ID_KEY) {
+                // Add the data
+                setOnClickListener {
+
+                }
+            } else {
+                // Update the data
+                setOnClickListener {
+                    val productId = binding.textViewProductId.text.toString().toInt()
+                    val productName = binding.editTextProductName.text.toString()
+                    val productPrice = binding.editTextProductPrice.text.toString()
+                    val newProduct = Product(productId, productName, productPrice)
+                    viewModel.updateProduct(newProduct)
+                }
+            }
         }
     }
 }
