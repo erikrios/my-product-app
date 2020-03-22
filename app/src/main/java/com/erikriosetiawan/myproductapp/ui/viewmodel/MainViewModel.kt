@@ -1,5 +1,7 @@
 package com.erikriosetiawan.myproductapp.ui.viewmodel
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,11 +10,13 @@ import com.erikriosetiawan.myproductapp.data.api.ProductService
 import com.erikriosetiawan.myproductapp.data.api.ServiceBuilder
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.data.model.ProductResponse
+import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity
+import com.erikriosetiawan.myproductapp.ui.main.DetailsActivity.Companion.PRODUCT_ADD_ID_KEY
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val context: Context) : ViewModel() {
 
     private val LOG = MainViewModel::class.java.simpleName
 
@@ -53,5 +57,11 @@ class MainViewModel : ViewModel() {
                 t.message?.let { Log.e(LOG, it) }
             }
         })
+    }
+
+    fun addDataIntent() {
+        val intent = Intent(context, DetailsActivity::class.java)
+        intent.putExtra(PRODUCT_ADD_ID_KEY, PRODUCT_ADD_ID_KEY)
+        context.startActivity(intent)
     }
 }
