@@ -116,7 +116,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         }
     }
 
-    fun addProduct(newProduct: Product) {
+    private fun addProduct(newProduct: Product) {
         val requestCall = productService.addProduct(newProduct)
         requestCall.enqueue(object : Callback<ProductResultResponse> {
             override fun onResponse(
@@ -141,6 +141,20 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                 t.message?.let { Log.e(LOG, it) }
             }
         })
+    }
+
+    // Validate the data
+    fun validateData(newProduct: Product) {
+        var isEmptyProductName = false
+        var isEmptyProductPrice = false
+
+        if (newProduct.productName.isNullOrBlank())
+            isEmptyProductName = true
+        if (newProduct.productPrice.isNullOrBlank())
+            isEmptyProductPrice = true
+
+        if (!isEmptyProductName && !isEmptyProductPrice)
+            addProduct(newProduct)
     }
 
     private fun getIntent(): Int {
