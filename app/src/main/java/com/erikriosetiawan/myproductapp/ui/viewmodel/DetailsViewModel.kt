@@ -116,6 +116,33 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         }
     }
 
+    fun addProduct(newProduct: Product) {
+        val requestCall = productService.addProduct(newProduct)
+        requestCall.enqueue(object : Callback<ProductResultResponse> {
+            override fun onResponse(
+                call: Call<ProductResultResponse>,
+                response: Response<ProductResultResponse>
+            ) {
+                Toast.makeText(
+                        activity.baseContext,
+                        "Adding product successfully",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+                Log.i(LOG, "Adding data successfully")
+            }
+
+            override fun onFailure(call: Call<ProductResultResponse>, t: Throwable) {
+                Toast.makeText(
+                    activity.baseContext,
+                    "Failed to add new product",
+                    Toast.LENGTH_SHORT
+                ).show()
+                t.message?.let { Log.e(LOG, it) }
+            }
+        })
+    }
+
     private fun getIntent(): Int {
         return activity.intent.getIntExtra(PRODUCT_ID_KEY, -1)
     }
