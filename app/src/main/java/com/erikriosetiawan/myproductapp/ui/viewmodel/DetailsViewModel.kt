@@ -29,6 +29,8 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
     val isShow: LiveData<Boolean>
         get() = _isShow
 
+    val intentId = getIntentAddId()
+
     private fun showProgress(show: Boolean) {
         _isShow.value = show
     }
@@ -36,7 +38,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
     private val productService = ServiceBuilder.buildService(ProductService::class.java)
 
     init {
-        if (getIntentAddId() != DetailsActivity.PRODUCT_ADD_ID_KEY)
+        if (intentId != DetailsActivity.PRODUCT_ADD_ID_KEY)
             getProduct()
     }
 
@@ -118,7 +120,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
         return activity.intent.getIntExtra(PRODUCT_ID_KEY, -1)
     }
 
-    fun getIntentAddId(): String =
+    private fun getIntentAddId(): String =
         activity.intent.getStringExtra(DetailsActivity.PRODUCT_ADD_ID_KEY) as String
 }
 
