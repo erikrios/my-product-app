@@ -67,7 +67,12 @@ class DetailsActivity : AppCompatActivity() {
             if (viewModel.intentId == PRODUCT_ADD_ID_KEY) {
                 // Add the data
                 setOnClickListener {
-
+                    val newProduct = Product(
+                        null,
+                        binding.editTextProductName.text.toString(),
+                        binding.editTextProductPrice.text.toString()
+                    )
+                    viewModel.validateData(newProduct)
                 }
             } else {
                 // Update the data
