@@ -38,22 +38,23 @@ class DetailsActivity : AppCompatActivity() {
     private fun setUpUI() {
 
         // Observe the live data
-        viewModel.apply {
-            isShow.observe(this@DetailsActivity, Observer {
-                if (it)
-                    binding.progressBar.visibility = View.VISIBLE
-                else
-                    binding.progressBar.visibility = View.INVISIBLE
-            })
+        if (viewModel.intentId != PRODUCT_ADD_ID_KEY)
+            viewModel.apply {
+                isShow.observe(this@DetailsActivity, Observer {
+                    if (it)
+                        binding.progressBar.visibility = View.VISIBLE
+                    else
+                        binding.progressBar.visibility = View.INVISIBLE
+                })
 
-            product.observe(this@DetailsActivity, Observer {
-                binding.apply {
-                    textViewProductId.text = it.productId.toString()
-                    editTextProductName.setText(it.productName)
-                    editTextProductPrice.setText(it.productPrice)
-                }
-            })
-        }
+                product.observe(this@DetailsActivity, Observer {
+                    binding.apply {
+                        textViewProductId.text = it.productId.toString()
+                        editTextProductName.setText(it.productName)
+                        editTextProductPrice.setText(it.productPrice)
+                    }
+                })
+            }
 
         // Set button text
         binding.buttonUpdateData.apply {
