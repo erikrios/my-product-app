@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         binding.swipeMain.setOnRefreshListener { viewModel.getDataProducts() }
 
         binding.floatingActionButton.setOnClickListener {
-
+            viewModel.addDataIntent()
         }
     }
 
