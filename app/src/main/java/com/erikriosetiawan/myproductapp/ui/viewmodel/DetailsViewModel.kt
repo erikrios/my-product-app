@@ -144,7 +144,7 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
     }
 
     // Validate the data
-    fun validateData(newProduct: Product) {
+    private fun validateData(newProduct: Product) {
         var isEmptyProductName = false
         var isEmptyProductPrice = false
 
