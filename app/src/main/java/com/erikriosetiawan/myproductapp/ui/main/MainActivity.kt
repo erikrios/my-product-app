@@ -11,6 +11,7 @@ import com.erikriosetiawan.myproductapp.adapter.ProductAdapter
 import com.erikriosetiawan.myproductapp.data.model.Product
 import com.erikriosetiawan.myproductapp.databinding.ActivityMainBinding
 import com.erikriosetiawan.myproductapp.ui.viewmodel.MainViewModel
+import com.erikriosetiawan.myproductapp.ui.viewmodel.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val viewModelFactory = MainViewModelFactory(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
     }
 
     private fun setUpUI() {
