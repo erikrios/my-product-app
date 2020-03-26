@@ -1,7 +1,6 @@
 package com.erikriosetiawan.myproductapp.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
