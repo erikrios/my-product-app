@@ -103,10 +103,10 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                 override fun onFailure(call: Call<ProductResultResponse>, t: Throwable) {
                     t.message?.let { Log.e(LOG, it) }
                     Toast.makeText(
-                            activity.baseContext,
-                            "Product update failed",
-                            Toast.LENGTH_SHORT
-                        )
+                        activity.baseContext,
+                        "Product update failed",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             })
@@ -124,10 +124,10 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                 response: Response<ProductResultResponse>
             ) {
                 Toast.makeText(
-                        activity.baseContext,
-                        "Adding product successfully",
-                        Toast.LENGTH_SHORT
-                    )
+                    activity.baseContext,
+                    "Adding product successfully",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 Log.i(LOG, "Adding data successfully")
                 activity.finish()
@@ -137,6 +137,34 @@ class DetailsViewModel(private val activity: Activity) : ViewModel() {
                 Toast.makeText(
                     activity.baseContext,
                     "Failed to add new product",
+                    Toast.LENGTH_SHORT
+                ).show()
+                t.message?.let { Log.e(LOG, it) }
+            }
+        })
+    }
+
+    fun deleteProduct(id: Int) {
+        val requestCall = productService.deleteProduct(id)
+        requestCall.enqueue(object : Callback<ProductResultResponse> {
+
+            override fun onResponse(
+                call: Call<ProductResultResponse>,
+                response: Response<ProductResultResponse>
+            ) {
+                Toast.makeText(
+                    activity.baseContext,
+                    "Delete product successfully",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.i(LOG, "Deleting data successfully")
+                activity.finish()
+            }
+
+            override fun onFailure(call: Call<ProductResultResponse>, t: Throwable) {
+                Toast.makeText(
+                    activity.baseContext,
+                    "Failed to delete the product",
                     Toast.LENGTH_SHORT
                 ).show()
                 t.message?.let { Log.e(LOG, it) }
