@@ -89,6 +89,7 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
+    // Create options menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         if (viewModel.intentId != PRODUCT_ADD_ID_KEY) {
             menuInflater.inflate(R.menu.menu_main, menu)
@@ -96,6 +97,7 @@ class DetailsActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    // Add click handling when options menu is selected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_main -> {
