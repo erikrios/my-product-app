@@ -3,6 +3,7 @@ package com.erikriosetiawan.myproductapp.ui.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -53,6 +54,11 @@ class MainViewModel(private val context: Context) : ViewModel() {
             }
 
             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                Toast.makeText(
+                    context,
+                    "No internet connection! Please check your internet connection",
+                    Toast.LENGTH_LONG
+                ).show()
                 showProgress(false)
                 t.message?.let { Log.e(LOG, it) }
             }
