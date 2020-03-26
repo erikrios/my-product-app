@@ -1,6 +1,9 @@
 package com.erikriosetiawan.myproductapp.ui.main
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -85,5 +88,22 @@ class DetailsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if (viewModel.intentId != PRODUCT_ADD_ID_KEY) {
+            menuInflater.inflate(R.menu.menu_main, menu)
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_main -> {
+                val id = binding.textViewProductId.text.toString().toInt()
+                viewModel.deleteProduct(id)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
