@@ -51,6 +51,12 @@ class MainViewModel(private val context: Context) : ViewModel() {
                 showProgress(false)
                 if (response.isSuccessful)
                     _products.postValue(response.body()?.response)
+                else
+                    Toast.makeText(
+                        context,
+                        "No response from server. Please try again later",
+                        Toast.LENGTH_LONG
+                    ).show()
             }
 
             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
